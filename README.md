@@ -13,8 +13,17 @@ A simplified Python library for downloading files from Mega.nz public URLs.
 
 ## Installation
 
+### Option 1: Install via pip (recommended)
 ```bash
 pip install mega-lite
+```
+### Option 2: Clone the repository manually
+```bash
+git clone https://github.com/Pbat6/mega-lite.git
+cd mega-lite
+python3 -m venv venv
+source ./venv/bin/activate
+pip install -r requirement.txt
 ```
 
 ## Usage
@@ -33,9 +42,6 @@ print(f"Downloaded to: {file_path}")
 
 ```bash
 # Using the command after installing
-mega-download "https://mega.nz/file/..." ./downloads/
-
-# Or using the script directly
 python3 mega_downloader.py "https://mega.nz/file/..." ./downloads/
 ```
 
