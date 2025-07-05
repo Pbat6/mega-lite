@@ -23,7 +23,7 @@ git clone https://github.com/Pbat6/mega-lite.git
 cd mega-lite
 python3 -m venv venv
 source ./venv/bin/activate
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
