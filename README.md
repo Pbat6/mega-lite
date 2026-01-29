@@ -33,15 +33,67 @@ pip install -r requirements.txt
 ```python
 from mega_downloader import download_mega_file
 
-# Download a file from Mega.nz
+# Download a file to specific directory
 file_path = download_mega_file('https://mega.nz/file/...', './downloads/')
 print(f"Downloaded to: {file_path}")
+
+# Download a file to current directory
+file_path = download_mega_file('https://mega.nz/file/...')
+```
+
+### Get File Information (without downloading)
+
+```python
+from mega_downloader import get_mega_file_info
+
+info = get_mega_file_info('https://mega.nz/file/...')
+print(f"File: {info['name']}")
+print(f"Size: {info['size']} bytes")
+```
+
+### Advanced Usage with MegaDownloader Class
+
+```python
+from mega_downloader import MegaDownloader
+
+# Create downloader with custom timeout
+downloader = MegaDownloader(timeout=60)
+
+# Get file info first
+info = downloader.get_file_info('https://mega.nz/file/...')
+print(f"File: {info['name']} ({info['size'] / 1024 / 1024:.2f} MB)")
+
+# Then download
+file_path = downloader.download_from_url('https://mega.nz/file/...', './downloads/')
+```
+
+### Error Handling
+
+```python
+from mega_downloader import (
+    download_mega_file,
+    MegaDownloadError,
+    MegaURLError,
+    MegaAPIError
+)
+
+try:
+    download_mega_file('https://mega.nz/file/...')
+except MegaURLError as e:
+    print(f"Invalid URL: {e}")
+except MegaAPIError as e:
+    print(f"API Error: {e}")
+except MegaDownloadError as e:
+    print(f"Download Error: {e}")
 ```
 
 ### Command Line Interface
 
 ```bash
-# Using the command after installing
+# After pip install
+mega-download "https://mega.nz/file/..." ./downloads/
+
+# Or run directly
 python3 mega_downloader.py "https://mega.nz/file/..." ./downloads/
 ```
 
@@ -61,5 +113,5 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Author
 
-**pbat + github copilot**
+**pbat**
 
